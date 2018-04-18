@@ -11,7 +11,6 @@
 using namespace cv;
 using namespace std;
 
-//no
 // image matrix for input
 
 VideoCapture cap;
