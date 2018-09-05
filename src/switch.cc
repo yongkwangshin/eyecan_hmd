@@ -21,8 +21,13 @@ void initSwitch()
     pinMode(swPin_3, INPUT);//버튼을 위해 입력으로 설정
     pinMode(swPin_4, INPUT);//버튼을 위해 입력으로 설정
     pinMode(swPin_5, INPUT);//버튼을 위해 입력으로 설정
-    pullUpDnControl(butPin, PUD_UP);
- 
+
+    pullUpDnControl(swPin_1, PUD_UP); 
+    pullUpDnControl(swPin_2, PUD_UP);
+    pullUpDnControl(swPin_3, PUD_UP);
+    pullUpDnControl(swPin_4, PUD_UP);
+    pullUpDnControl(swPin_5, PUD_UP);
+
     sw1 = digitalRead(swPin_1);	
     sw2 = digitalRead(swPin_2);
     sw3 = digitalRead(swPin_3);
@@ -31,8 +36,7 @@ void initSwitch()
 }
 
 void updateSwitch()
-{
-    wiringPiSetupGpio(); 
+{ 
     sw1 = digitalRead(swPin_1);	
     sw2 = digitalRead(swPin_2);
     sw3 = digitalRead(swPin_3);
