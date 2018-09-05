@@ -25,11 +25,9 @@ tf_cc_binary(
 	"-I/usr/local/include/", 
 	"-O3",
 	"-I/usr/local/include",
-	
 	],
 
     deps = [
-	    "@opencv//:opencv",
 	    ":camera", 
 	    ":curl", 
 	    ":geomagnetic", 
@@ -86,6 +84,9 @@ cc_library(
     hdrs = [
         "include/camera.h",
     ],
+    deps = [
+	    "@opencv//:opencv",
+        ]
 )
 
 cc_library(

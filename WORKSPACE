@@ -4,7 +4,6 @@ new_local_repository(
     name = "opencv",
     path = "/usr/local/Cellar/opencv/3.4.2",
     #path = "/usr/local",#라즈베리파이 경로로 추정됨 주석 지우고 빌드시도해보셈
-
     build_file = "opencv.BUILD",
 )
 
