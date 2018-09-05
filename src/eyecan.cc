@@ -104,7 +104,7 @@ void *speakerTask(void *data)
 void initDevice()
 {
     //디바이스초기화 함수 부르기
-    //initCamera(); 
+    initCamera();
     initGeo();
     //initGPS();
     printf("Device Initialization...\n");
@@ -116,6 +116,7 @@ int main()
 
 
     initDevice();
+    //updatePixel();
     pthread_t p_thread[3];
     int thr_id;
     int status;
