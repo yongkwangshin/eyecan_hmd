@@ -43,20 +43,21 @@ void *subTask1(void *data)
 {
     while(1)
     {
-        //스위치상태업데이트
-        //updateSwitch();
-        printf("switch updated\n");
+        //스위치값 업데이트
+        updateSwitch();
+        
         //GPS 업데이트
-        //updateGPS();
-        printf("GPS updated\n");
+        //updateGPS();라즈베리파이에서만 실행되는 함수
+        
         //배터리검사
         //updateBattery();함수구현아직안됨
-        printf("Battery status updated\n");
+        
         //지자기 업데이트
-        //updateGeo();
-        printf("Geo updated\n");
+        updateGeo();
+        
         //서버에 센서값 전송
-        //sendData();
+        sendData();
+        
         sleep(1);
     }
 }
@@ -65,14 +66,15 @@ void *subTask2(void *data)
 {
     while(1)
     {
-        bool isBufferEmpty = false;
-        //isBufferEmpty = isBufferEmpty();
-        if(isBufferEmpty)
+        
+        bool bufferEmpty = isBufferEmpty();
+        //버퍼가 비어있지 않을 때만
+        if(!bufferEmpty)
         {
             //버퍼에 있는 값 TTS 재생
-            //playTTS("버퍼 데이터");
+            playTTS("버퍼 데이터");
             //버퍼비우기
-            //flushBuffer();
+            flushBuffer();
         }
         sleep(1);
     }
@@ -83,13 +85,19 @@ void *speakerTask(void *data)
     while(1)
     {
         //스피커가 사용 중이지 않을 때에만 주기적으로 비프음 재생
-        bool isSpeakerBusy = false;
-        //isBufferEmpty = isBufferEmpty();
-        if(!isSpeakerBusy)
+        
+        bool speakerBusy = s_busy;
+        if(!speakerBusy)
         {
-            isSpeakerBusy = true;
-            printf("Beep!\n");
-            isSpeakerBusy = false;
+            
+            //sleep! 여기서 적당히 쉬기, speaker.cc에 있는 bpm값을 이용해 쉬는 길이를 계산한다
+            //score가 너무 낮으면 그냥 지나가야한다(너무 오래 기다리면 안됨)
+            
+            //score가 일정점수 이상일때만 playBeep()를 수행한다.
+            speakerBusy = true;
+            playBeep();
+            
+            speakerBusy = false;
         }
         
         //score 전역변수로 바꿔야 함
@@ -107,7 +115,7 @@ void initDevice()
     initCamera();
     initGeo();
     initNetwork();
-    //initGPS();
+    //initGPS(); //라즈베리파이에서만 동작
     
     
 }
