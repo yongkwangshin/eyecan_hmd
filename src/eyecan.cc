@@ -36,7 +36,6 @@
 #include "tensorflow/core/util/command_line_flags.h"
 
 
-//전역변수 선언
 
 
 // 쓰레드 함수
@@ -104,7 +103,7 @@ void *speakerTask(void *data)
 void initDevice()
 {
     //디바이스초기화 함수 부르기
-    //initCamera(); 
+    //initCamera();
     initGeo();
     //initGPS();
     printf("Device Initialization...\n");

@@ -10,6 +10,14 @@ exports_files(["data/grace_hopper.jpg"])
 
 load("//tensorflow:tensorflow.bzl", "tf_cc_binary")
 
+cc_binary(   
+    name = "cameratest",
+    srcs = ["cameratest.cc"],
+    deps = ["camera",
+	   "@opencv//:opencv",
+	   ],
+)
+
 tf_cc_binary(
     name = "eyecan",
     srcs = [
