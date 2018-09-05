@@ -5,6 +5,7 @@ bazel-genfiles
 bazel-out
 bazel-testlogs
 
+*.pb
 # Compiled source #
 ###################
 *.com

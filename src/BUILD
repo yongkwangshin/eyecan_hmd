@@ -125,6 +125,7 @@ cc_library(
             "//tensorflow/core:protos_all_cc",
             "//tensorflow/core:tensorflow",
 	    "@opencv//:opencv",
+		":camera"
 	]
 )
 
