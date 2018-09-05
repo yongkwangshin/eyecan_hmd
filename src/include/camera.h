@@ -1,12 +1,23 @@
 #ifndef CAMERA_H_
 #define CAMERA_H_
 
+#include<iostream>
 #include<vector>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <opencv2/highgui/highgui.hpp>
+#include "opencv2/opencv.hpp"
+#include "opencv2/xfeatures2d.hpp"
+#include <stdlib.h> 
+#include <vector>
+#include <cstdlib>
 
-extern std::vector<float> pixelData;
+using namespace cv;
 
-  void initCamera();
-  void updatePixel();
+extern Mat dst;
 
+void initCamera();
+void updatePixel();
 
 #endif
