@@ -32,7 +32,7 @@ using namespace std;
 //전역변수
 float score;//beep음 주기를 계산하기 위한 전역변수
 float seg_result[OUTPUT_WIDTH][OUTPUT_HEIGHT]; //세그멘테이션 결과를 저장하는 전역변수 224*224
-string GRAPH_PATH = "data/ex1.model.0.h5.pb";//실행파일 및에 data폴더에 파일이 있어야함
+string GRAPH_PATH = "./data/ex1.model.0.h5.pb";//실행파일 밑에 data폴더에 파일이 있어야함, 실행파일 위치로가서 실행하ㅐ야함
 string inputLayerName = "image_tensor:0";//수정되어야함
 vector<string> outputLayerName = {"output_layer:0"};//수정되어야함
 
@@ -51,7 +51,7 @@ Status loadGraph(const string &graph_file_name,
     ReadBinaryProto(tensorflow::Env::Default(), graph_file_name, &graph_def);
     if (!load_graph_status.ok()) {
         return tensorflow::errors::NotFound("Failed to load compute graph at '",
-                                            graph_file_name, "'");
+                                            graph_file_name, "'\n");
     }
     session->reset(tensorflow::NewSession(tensorflow::SessionOptions()));
     Status session_create_status = (*session)->Create(graph_def);
@@ -96,6 +96,7 @@ Status readTensorFromMat(const Mat &mat, Tensor &outTensor) {
 //네트워크 초기화
 int initNetwork()
 {
+    cout <<"initNetwork() called"<<endl;
     score = 0;//스코어 초기화
     
     //그래프 읽기
@@ -122,6 +123,7 @@ int initNetwork()
 //세그멘테이션 결과를 결과배열에 저장한다.
 void getSegmentation()
 {
+    cout<<"getSegmentation process\n";
     // opencv 매트릭스값을 텐서로 변환
     inputTensor = Tensor(tensorflow::DT_FLOAT, shape);
     Status readTensorStatus = readTensorFromMat(dst, inputTensor);
@@ -141,7 +143,7 @@ void getSegmentation()
     //auto output_c = outputTensors[0].~~~~~; 여기서 아웃풋 값 받으면 됨, 리쉐입해서 배열에다 넣어줘
 }
 //score를 계산하여 전역변수 score에 저장한다.
-void caculateScore()
+void calculateScore()
 {
-    
+    cout<<"score calculation process\n";
 }

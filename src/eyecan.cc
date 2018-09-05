@@ -103,11 +103,12 @@ void *speakerTask(void *data)
 void initDevice()
 {
     //디바이스초기화 함수 부르기
-
+    printf("Device Initialization...\n");
     initCamera();
     initGeo();
+    initNetwork();
     //initGPS();
-    printf("Device Initialization...\n");
+    
     
 }
 
@@ -115,8 +116,7 @@ int main()
 {
 
 
-    initDevice();
-    //updatePixel();
+    initDevice();//디바이스 초기화
     pthread_t p_thread[3];
     int thr_id;
     int status;
@@ -154,13 +154,10 @@ int main()
         if(segmentationOn)
         {
             //픽셀값 업데이트
-            //updatePixel();
-            printf("pixel value updated!\n");
-            //getSegmentation();
+            updatePixel();
+            getSegmentation();
             sleep(1);
-            printf("getSegmentation completed\n");
-            //calculateScore();
-            printf("score calculation completed\n");
+            calculateScore();
         }
     }
     
