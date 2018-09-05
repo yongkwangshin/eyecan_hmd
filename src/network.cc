@@ -133,12 +133,12 @@ void getSegmentation()
     
     outputTensors.clear();//아웃풋텐서 비우고
     Status runStatus = session->Run({{inputLayerName, inputTensor}}, outputLayerName, {}, &outputTensors);
-    
+    //세션실행
     if (!runStatus.ok()) {
         std::cout << runStatus.ToString() << "\n";
         return;
     }
-    
+    //auto output_c = outputTensors[0].~~~~~; 여기서 아웃풋 값 받으면 됨, 리쉐입해서 배열에다 넣어줘
 }
 //score를 계산하여 전역변수 score에 저장한다.
 void caculateScore()
