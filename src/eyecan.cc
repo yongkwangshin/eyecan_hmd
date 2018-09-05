@@ -7,7 +7,7 @@
 #include <vector>
 #include <iostream>
 
-#include "include/gps.h"
+#include "include/hmdgps.h"
 #include "include/geomagnetic.h"
 #include "include/switch.h"
 #include "include/network.h"
@@ -36,6 +36,11 @@
 #include "tensorflow/core/util/command_line_flags.h"
 
 
+#include <opencv2/highgui/highgui.hpp>
+#include "opencv2/opencv.hpp"
+#include "opencv2/xfeatures2d.hpp"
+#include "include/camera.h"
+//전역변수 선언
 
 
 // 쓰레드 함수
@@ -103,6 +108,7 @@ void *speakerTask(void *data)
 void initDevice()
 {
     //디바이스초기화 함수 부르기
+    //initCamera();
     printf("Device Initialization...\n");
     
 }

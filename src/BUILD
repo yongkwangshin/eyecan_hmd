@@ -24,7 +24,6 @@ tf_cc_binary(
     copts = [
 	"-I/usr/local/include/", 
 	"-O3",
-	"-I/usr/local/include",
 	],
 
     deps = [
@@ -68,7 +67,11 @@ cc_library(
     srcs = ["hmdgps.c"],
     deps = [
 	    ":gps", 
-    ]
+    ],
+    hdrs = [
+        "include/hmdgps.h",
+
+    ],
 )
 
 
