@@ -2,6 +2,9 @@
 #ifndef __curl_h_
 #define __curl_h_
 
+using namespace std;
+
+#include <jsoncpp/json/json.h>
 
 extern int geo_yaw;
 extern double gps_lat;
