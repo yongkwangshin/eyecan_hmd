@@ -92,7 +92,7 @@ void *speakerTask(void *data)
             
             //sleep! 여기서 적당히 쉬기, speaker.cc에 있는 bpm값을 이용해 쉬는 길이를 계산한다
             //score가 너무 낮으면 그냥 지나가야한다(너무 오래 기다리면 안됨)
-            
+            sleep(1);
             //score가 일정점수 이상일때만 playBeep()를 수행한다.
             speakerBusy = true;
             playBeep();
@@ -100,10 +100,7 @@ void *speakerTask(void *data)
             speakerBusy = false;
         }
         
-        //score 전역변수로 바꿔야 함
-        int score = 3;
-        int interval = 10/score;
-        sleep(interval);
+        
     }
 }
 

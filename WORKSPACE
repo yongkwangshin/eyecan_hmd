@@ -2,8 +2,8 @@ workspace(name = "org_tensorflow")
 
 new_local_repository(
     name = "opencv",
-    #path = "/usr/local/Cellar/opencv/3.4.2", #for mac
-    path = "/usr/local",#라즈베리파이 경로
+    path = "/usr/local/Cellar/opencv/3.4.2", #for mac
+    #path = "/usr/local",#라즈베리파이 경로
     build_file = "opencv.BUILD",
 )
 
