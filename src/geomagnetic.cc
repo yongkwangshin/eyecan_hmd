@@ -25,6 +25,11 @@ void updateGeo(){
 		printf("yaw : %.2f \n", e.yaw);
 
 		geo_yaw = e.yaw;
+
+		if(geo_yaw < 0)
+		{
+			geo_yaw += 360;
+		}
 	}
 }
 
