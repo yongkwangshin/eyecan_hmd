@@ -69,13 +69,14 @@ Status readTensorFromMat(const Mat &mat, Tensor &outTensor) {
     using namespace ::tensorflow::ops;
     
     // Trick from https://github.com/tensorflow/tensorflow/issues/8033
-    float *p = outTensor.flat<float>().data();
-    Mat fakeMat(mat.rows, mat.cols, CV_32FC3, p);
-    mat.convertTo(fakeMat, CV_32FC3);
+    uint8_t *p = outTensor.flat<uint8_t>().data();
+    Mat fakeMat(mat.rows, mat.cols, CV_8UC3, p);
+    mat.convertTo(fakeMat, CV_8UC3);
     
-    auto input_tensor = Placeholder(root.WithOpName("input"), tensorflow::DT_FLOAT);
+    auto input_tensor = Placeholder(root.WithOpName("input"), tensorflow::DT_UINT8);
     vector<pair<string, tensorflow::Tensor>> inputs = {{"input", outTensor}};
     auto uint8Caster = Cast(root.WithOpName("uint8_Cast"), outTensor, tensorflow::DT_UINT8);
+    
     
     // This runs the GraphDef network definition that we've just constructed, and
     // returns the results in the output outTensor.
@@ -125,7 +126,7 @@ void getSegmentation()
 {
     cout<<"getSegmentation process\n";
     // opencv 매트릭스값을 텐서로 변환
-    inputTensor = Tensor(tensorflow::DT_FLOAT, shape);
+    inputTensor = Tensor(tensorflow::DT_UINT8, shape);
     Status readTensorStatus = readTensorFromMat(dst, inputTensor);
     if (!readTensorStatus.ok()) {
         cout << "dst->Tensor conversion failed: " << readTensorStatus;
@@ -138,7 +139,7 @@ void getSegmentation()
     Status runStatus = session->Run({{inputLayerName, inputTensor}}, outputLayerName, {}, &outputTensors);
     //세션실행
     if (!runStatus.ok()) {
-        std::cout << runStatus.ToString() << "\n";
+        std::cout << runStatus.ToString() << "dddd\n";
         return;
     }
     //auto output_c = outputTensors[0].~~~~~; 여기서 아웃풋 값 받으면 됨, 리쉐입해서 배열에다 넣어줘

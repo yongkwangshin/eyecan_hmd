@@ -46,9 +46,10 @@ void updatePixel() { //Update global variable when call
     
     resize(frame, dst, Size(640, 480), cv::INTER_LINEAR);
     // We will use dst
-    
     // show live and wait for a key with timeout long enough to show images
     imshow("Image", dst);
+    dst
+    cout<<"typs is : "<<dst.type()<<endl;
     cvWaitKey(0);
     
 }
