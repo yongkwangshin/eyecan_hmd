@@ -48,6 +48,7 @@ void updatePixel() { //Update global variable when call
     // We will use dst
     
     // show live and wait for a key with timeout long enough to show images
-    imshow("Live", dst);
+    imshow("Image", dst);
+    cvWaitKey(0);
     
 }
