@@ -134,6 +134,7 @@ void getSegmentation()
     
     
     outputTensors.clear();//아웃풋텐서 비우고
+    cout<<"getSegmentation process2\n";
     Status runStatus = session->Run({{inputLayerName, inputTensor}}, outputLayerName, {}, &outputTensors);
     //세션실행
     if (!runStatus.ok()) {
