@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <curl/curl.h>
 #include <string>
@@ -25,15 +26,18 @@ string rBuffer;	//알릴 메세지
 string EC; //서버에 보낼 정보
 string URL="https://eyecan.tk/rest_api/map_api?";
 string tmp; //서버에서 받는 정보
-int geo_yaw_=(int)geo_yew;
+ */
+
+
+//int geo_yaw_=(int)geo_yew;
 
 //버퍼 비우기
 void flushBuffer()
 {
-	tmp="";
+	//tmp="";
     	//cout<<"flushBuffer()"<<endl;
 }
-
+/*
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
 	((string*)userp)->append((char*)contents, size*nmemb);
@@ -53,11 +57,12 @@ string JTOS(Json::Value Eye){
     	strs << Eye;
     	return strs.str();
 }
-
+*/
 
 //통신초기화
 void initCurl()
 {
+    /*
     	flushBuffer();
     	if(sw1==1)
         	pin=1;
@@ -84,23 +89,26 @@ void initCurl()
             		+"&angle="+NTOS(geo_yaw_);
     	}
   	//cout<<"initCurl()"<<endl;
+    */
 }
 
 //버퍼가 비었는지 확인
 bool isBufferEmpty()
 {
+    /*
   	if(tmp=="")
     		return true;
   	else
     		return false;
    	// cout<<"isBufferEmpty()"<<endl;
-
+*/
 }
 
 
 //버퍼에 데이터 보내기
 void sendData()
 {
+    /*
   	initCurl();
   	CURL *curl;
 	CURLcode res;
@@ -138,5 +146,5 @@ void sendData()
     	//code_num=JTOS(Eyecan["code_num"]);
 	//cout<<"sendData()"<<endl;
 	}
-
+*/
 }

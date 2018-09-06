@@ -69,15 +69,14 @@ Status readTensorFromMat(const Mat &mat, Tensor &outTensor) {
     using namespace ::tensorflow::ops;
     
     // Trick from https://github.com/tensorflow/tensorflow/issues/8033
-    uint8_t *p = outTensor.flat<uint8_t>().data();
-    Mat fakeMat(mat.rows, mat.cols, CV_8UC3, p);
-    mat.convertTo(fakeMat, CV_8UC3);
+    float *p = outTensor.flat<float>().data();
+    Mat fakeMat(mat.rows, mat.cols, CV_32FC3, p);
+    mat.convertTo(fakeMat, CV_32FC3);
     
-    auto input_tensor = Placeholder(root.WithOpName("input"), tensorflow::DT_UINT8);
+    auto input_tensor = Placeholder(root.WithOpName("input"), tensorflow::DT_FLOAT);
     vector<pair<string, tensorflow::Tensor>> inputs = {{"input", outTensor}};
     auto uint8Caster = Cast(root.WithOpName("uint8_Cast"), outTensor, tensorflow::DT_UINT8);
-    
-    
+    /*
     // This runs the GraphDef network definition that we've just constructed, and
     // returns the results in the output outTensor.
     tensorflow::GraphDef graph;
@@ -87,12 +86,13 @@ Status readTensorFromMat(const Mat &mat, Tensor &outTensor) {
     unique_ptr<tensorflow::Session> session(tensorflow::NewSession(tensorflow::SessionOptions()));
     
     TF_RETURN_IF_ERROR(session->Create(graph));
-    TF_RETURN_IF_ERROR(session->Run({inputs}, {"uint8_Cast"}, {}, &outTensors));
+    TF_RETURN_IF_ERROR(session->Run({inputs}, {"input"}, {}, &outTensors));
     
     outTensor = outTensors.at(0);
+     */
     return Status::OK();
+     
 }
-
 
 //네트워크 초기화
 int initNetwork()
@@ -126,7 +126,7 @@ void getSegmentation()
 {
     cout<<"getSegmentation process\n";
     // opencv 매트릭스값을 텐서로 변환
-    inputTensor = Tensor(tensorflow::DT_UINT8, shape);
+    inputTensor = Tensor(tensorflow::DT_FLOAT, shape);
     Status readTensorStatus = readTensorFromMat(dst, inputTensor);
     if (!readTensorStatus.ok()) {
         cout << "dst->Tensor conversion failed: " << readTensorStatus;
@@ -135,13 +135,13 @@ void getSegmentation()
     
     
     outputTensors.clear();//아웃풋텐서 비우고
-    cout<<"getSegmentation process2\n";
-    Status runStatus = session->Run({{inputLayerName, inputTensor}}, outputLayerName, {}, &outputTensors);
+    //cout<<"getSegmentation process2\n";
+    //Status runStatus = session->Run({{inputLayerName, inputTensor}}, outputLayerName, {}, &outputTensors);
     //세션실행
-    if (!runStatus.ok()) {
-        std::cout << runStatus.ToString() << "dddd\n";
-        return;
-    }
+    //if (!runStatus.ok()) {
+    //    std::cout << runStatus.ToString() << "dddd\n";
+    //    return;
+    //}
     //auto output_c = outputTensors[0].~~~~~; 여기서 아웃풋 값 받으면 됨, 리쉐입해서 배열에다 넣어줘
 }
 //score를 계산하여 전역변수 score에 저장한다.

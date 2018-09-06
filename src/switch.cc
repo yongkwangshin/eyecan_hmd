@@ -1,5 +1,6 @@
+/*
 #include <wiringPi.h>
- 
+*/
 const int swPin_1 = 17;//pin 11(GPIO 17)
 const int swPin_2 = 18;//pin 12(GPIO 18) 
 const int swPin_3 = 27;//pin 13(GPIO 27)
@@ -14,7 +15,8 @@ int sw5;
 
 void initSwitch()
 {
-    wiringPiSetupGpio(); 
+    /*
+    wiringPiSetupGpio();
 
     pinMode(swPin_1, INPUT);//버튼을 위해 입력으로 설정
     pinMode(swPin_2, INPUT);//버튼을 위해 입력으로 설정
@@ -33,13 +35,16 @@ void initSwitch()
     sw3 = digitalRead(swPin_3);
     sw4 = digitalRead(swPin_4);
     sw5 = digitalRead(swPin_5);
+     */
 }
 
 void updateSwitch()
-{ 
+{
+    /*
     sw1 = digitalRead(swPin_1);	
     sw2 = digitalRead(swPin_2);
     sw3 = digitalRead(swPin_3);
     sw4 = digitalRead(swPin_4);
     sw5 = digitalRead(swPin_5);
+     */
 }
