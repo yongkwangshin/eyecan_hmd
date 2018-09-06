@@ -26,15 +26,15 @@ using tensorflow::string;
 using tensorflow::int32;
 using namespace std;
 
-#define OUTPUT_HEIGHT 224
-#define OUTPUT_WIDTH 224
+#define OUTPUT_HEIGHT 480
+#define OUTPUT_WIDTH 680
 
 //전역변수
 float score;//beep음 주기를 계산하기 위한 전역변수
 float seg_result[OUTPUT_WIDTH][OUTPUT_HEIGHT]; //세그멘테이션 결과를 저장하는 전역변수 224*224
 string GRAPH_PATH = "./data/ex1.model.0.h5.pb";//실행파일 밑에 data폴더에 파일이 있어야함, 실행파일 위치로가서 실행하ㅐ야함
-string inputLayerName = "image_tensor:0";//수정되어야함
-vector<string> outputLayerName = {"output_layer:0"};//수정되어야함
+string inputLayerName = "input_1";//수정되어야함
+vector<string> outputLayerName = {"output_node0"};//수정되어야함
 
 std::unique_ptr<tensorflow::Session> session;//세션 포인터
 Tensor inputTensor;//인풋 텐서
