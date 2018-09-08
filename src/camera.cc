@@ -11,6 +11,7 @@
 using namespace cv;
 using namespace std;
 
+//no
 // image matrix for input
 
 VideoCapture cap;
@@ -48,8 +49,8 @@ void updatePixel() { //Update global variable when call
     // We will use dst
     // show live and wait for a key with timeout long enough to show images
     imshow("Image", dst);
-    dst.convertTo(dst, CV_32FC3);
-    cout<<"typs is : "<<dst.type()<<endl;
+    //dst.convertTo(dst, CV_32FC3);
+    
     cvWaitKey(0);
     
 }
