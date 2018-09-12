@@ -7,7 +7,7 @@ using namespace std;
 #include <jsoncpp/json/json.h>
 
 
-extern int geo_yaw;
+extern double geo_yaw;
 extern double gps_lat;
 extern double gps_long;
 int battery;
@@ -19,7 +19,7 @@ extern int sw4;
 extern int sw5;
 int pin;
 int device_id;
-
+int geo_yaw_=(int)geo_yaw;
 string EC; //서버에 보낼 정보
 string URL;
 string tmp;
