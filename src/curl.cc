@@ -29,7 +29,7 @@ string tmp; //서버에서 받는 정보
  */
 
 
-//int geo_yaw_=(int)geo_yew;
+//int geo_yaw_=(int)geo_yaw;
 
 //버퍼 비우기
 void flushBuffer()
@@ -136,7 +136,7 @@ void sendData()
     		Json::Reader reader;
     		reader.parse( tmp, Eyecan );
 
-    		rBuffer=JTOS(Eyecan["message"]);
+    		
     		if(pin==8||pin==9){
       			rBuffer="";
      		}
